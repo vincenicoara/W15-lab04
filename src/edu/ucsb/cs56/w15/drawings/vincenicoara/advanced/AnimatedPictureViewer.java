@@ -8,15 +8,19 @@ public class AnimatedPictureViewer {
 
     private DrawPanel panel = new DrawPanel();
     
-    private Face face = new Face(100, 100, 100);
+    private FaceWithFancyMustache face = new FaceWithFancyMustache(100, 100, 100);
     
     Thread anim;   
     
     private int x = 100;
     private int y = 100;
-    private double mouthYCoordinate = (100 + 100/3);
-    private Double mustacheLine = new Double (x-(100/2) - x/20, mouthYCoordinate - 100/15
-               , x+(100/2) + x/20, mouthYCoordinate - 100/15);
+    private int angleExtent = 0;
+    //private int xMustache = 100;
+    //private int yMustache = 100; 
+    //private double mouthYCoordinate = (100 + 100/3);
+    //private Double mustacheLine = new Double (x-(100/2) - x/20, mouthYCoordinate - 100/15
+    //          , x+(100/2) + x/20, mouthYCoordinate - 100/15);
+
     
     private int dx = 5;
 
@@ -62,7 +66,7 @@ public class AnimatedPictureViewer {
 
           // Draw the Ipod
           g2.setColor(Color.RED);
-          Face test = new Face(x, y, 100);
+          Face test = new Face(x, y, 100 );
           g2.draw(test);
        }
     }
@@ -70,12 +74,21 @@ public class AnimatedPictureViewer {
     class Animation extends Thread {
       public void run() {
         try {
+          //double leftPoint = x-(100/2) - x/20;
+          //double rightPoint = x+(100/2) - x/20;
+          //double distance = leftPoint - rightPoint;
+
           while (true) {
             // Bounce off the walls
 
-            if (x >= 400) { dx = -5; }
-            if (x <= 50) { dx = 5; }
-            if ()
+            if (x >= 400) { 
+              dx = -5; 
+              
+            }
+            if (x <= 50) {
+             dx = 5; 
+            }
+            
             
             x += dx;                
             panel.repaint();

@@ -31,6 +31,8 @@ public class FaceWithFancyMustache extends Face implements Shape
 	private int x;
 	private int y;
 	private int radius;
+  private double leftPoint;
+  private double rightPoint;
     /**
        Constructor
        @param xCoordinate the left-most x-coordinate of the head
@@ -39,16 +41,66 @@ public class FaceWithFancyMustache extends Face implements Shape
      */   
          
     public FaceWithFancyMustache(int xCoordinate, int yCoordinate, int r){
-    super(xCoordinate,yCoordinate,r);
-    x = xCoordinate;
-    y = yCoordinate;
-    radius = r;
-    GeneralPath wholeFace = this.get();
-    double mouthYCoordinate = (y + radius/3);
-    Double mustacheLine = new Double (x-(radius/2) - x/20, mouthYCoordinate - radius/15
-				       , x+(radius/2) + x/20, mouthYCoordinate - radius/15);
-    wholeFace.append(mustacheLine, false);
+      super(xCoordinate,yCoordinate,r);
+      x = xCoordinate;
+      y = yCoordinate;
+      radius = r;
+
+      double mouthYCoordinate = (y + radius/3);
+      leftPoint = x-(radius/2) - x/20;
+      rightPoint = x+(radius/2) + x/20;
+
+      GeneralPath wholeFace = this.get();
+
+      Double mustacheLine = new Double (leftPoint, mouthYCoordinate - radius/15
+				       , rightPoint, mouthYCoordinate - radius/15);
+      wholeFace.append(mustacheLine, false);
+    }
+
+    public FaceWithFancyMustache(int xCoordinate, int yCoordinate, int r, int extent ){
+      super(xCoordinate,yCoordinate,r);
+      x = xCoordinate;
+      y = yCoordinate;
+      radius = r;
+
+      double mouthYCoordinate = (y + radius/3);
+      leftPoint = x-(radius/2) - x/20 - dist;
+      rightPoint = x+(radius/2) + x/20 + dist;
+
+      GeneralPath wholeFace = this.get();
+
+      Double mustacheLine = new Double (leftPoint, mouthYCoordinate - radius/15
+               , rightPoint, mouthYCoordinate - radius/15);
+
+      java.awt.geom.Arc2D.Double rightMustache = new java.awt.geom.Arc2D.Double (
+                     x - (radius/2)
+                    , mouthYCoordinate - radius/2
+                    , radius
+                    , radius
+                    , 180
+                    , extent
+                    , java.awt.geom.Arc2D.OPEN          
+                );
+
+      java.awt.geom.Arc2D.Double leftMustache = new java.awt.geom.Arc2D.Double (
+                     x - (radius/2)
+                    , mouthYCoordinate - radius/2
+                    , radius
+                    , radius
+                    , -180
+                    , -extent
+                    , java.awt.geom.Arc2D.OPEN          
+                );
+  
+
+      wholeFace.append(mustacheLine, false);
     }
     
+    public double getLeftPoint(){
+      return leftPoint;
+    }
+    public double getRightPoint(){
+      return rightPoint;
+    }
 
 }
