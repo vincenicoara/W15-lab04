@@ -57,7 +57,7 @@ public class Face extends GeneralPathWrapper implements Shape
 										, radius
 										, radius
 										, 180
-										, 178
+										, 180
 										, java.awt.geom.Arc2D.OPEN					
 					      );
 	

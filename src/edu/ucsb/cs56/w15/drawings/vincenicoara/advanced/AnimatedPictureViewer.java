@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.w15.drawings.andrewberls.advanced;
+package edu.ucsb.cs56.w15.drawings.vincenicoara.advanced;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +8,15 @@ public class AnimatedPictureViewer {
 
     private DrawPanel panel = new DrawPanel();
     
-    private Ipod ipod = new Ipod(100, 100, 100);
+    private Face face = new Face(100, 100, 100);
     
     Thread anim;   
     
     private int x = 100;
     private int y = 100;
+    private double mouthYCoordinate = (100 + 100/3);
+    private Double mustacheLine = new Double (x-(100/2) - x/20, mouthYCoordinate - 100/15
+               , x+(100/2) + x/20, mouthYCoordinate - 100/15);
     
     private int dx = 5;
 
@@ -59,7 +62,7 @@ public class AnimatedPictureViewer {
 
           // Draw the Ipod
           g2.setColor(Color.RED);
-          Ipod test = new Ipod(x, y, 100);
+          Face test = new Face(x, y, 100);
           g2.draw(test);
        }
     }
@@ -72,6 +75,7 @@ public class AnimatedPictureViewer {
 
             if (x >= 400) { dx = -5; }
             if (x <= 50) { dx = 5; }
+            if ()
             
             x += dx;                
             panel.repaint();
