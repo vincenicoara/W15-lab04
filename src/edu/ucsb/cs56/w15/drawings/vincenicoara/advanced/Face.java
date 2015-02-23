@@ -49,16 +49,15 @@ public class Face extends GeneralPathWrapper implements Shape
 	Circle leftEyePupil = new Circle(x-(radius/2), y, radius/10);
 	Circle rightEyePupil = new Circle(x+(radius/2), y, radius/10);
 	double mouthYCoordinate = (y + radius/3);
-	Double mouthLine = new Double (x-(radius/2), mouthYCoordinate
-				       , x+(radius/2), mouthYCoordinate);
+
 	java.awt.geom.Arc2D.Double mouthCurve = new java.awt.geom.Arc2D.Double (
 										 x - (radius/2)
 										, mouthYCoordinate - radius/2
 										, radius
 										, radius
 										, 180
-										, 178
-										, java.awt.geom.Arc2D.OPEN					
+										, 180
+										, java.awt.geom.Arc2D.CHORD					
 					      );
 	
 
@@ -68,7 +67,6 @@ public class Face extends GeneralPathWrapper implements Shape
 	wholeFace.append(rightEye,false);
 	wholeFace.append(leftEyePupil,false);
 	wholeFace.append(rightEyePupil,false);
-	wholeFace.append(mouthLine, false);
 	wholeFace.append(mouthCurve, false);
     }
 
