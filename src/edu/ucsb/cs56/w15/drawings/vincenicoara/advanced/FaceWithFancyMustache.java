@@ -41,7 +41,7 @@ public class FaceWithFancyMustache extends Face implements Shape
      */   
          
     public FaceWithFancyMustache(int xCoordinate, int yCoordinate, int r){
-      super(xCoordinate ,yCoordinate, r);
+      super(xCoordinate,yCoordinate,r);
       x = xCoordinate;
       y = yCoordinate;
       radius = r;
@@ -57,38 +57,50 @@ public class FaceWithFancyMustache extends Face implements Shape
       wholeFace.append(mustacheLine, false);
     }
 
-    public FaceWithFancyMustache(int xCoordinate, int yCoordinate, int r, int eyeRadius ){
-      super(xCoordinate, yCoordinate, r, eyeRadius);
+    public FaceWithFancyMustache(int xCoordinate, int yCoordinate, int r, int extent ){
+      super(xCoordinate,yCoordinate,r);
       x = xCoordinate;
       y = yCoordinate;
       radius = r;
 
       double mouthYCoordinate = (y + radius/3);
-      leftPoint = x-(radius/2) - x/20 ;
-      rightPoint = x+(radius/2) + x/20 ;
+      leftPoint = x-(radius/2) - x/20 - dist;
+      rightPoint = x+(radius/2) + x/20 + dist;
 
       GeneralPath wholeFace = this.get();
 
       Double mustacheLine = new Double (leftPoint, mouthYCoordinate - radius/15
                , rightPoint, mouthYCoordinate - radius/15);
+
+      java.awt.geom.Arc2D.Double rightMustache = new java.awt.geom.Arc2D.Double (
+                     x - (radius/2)
+                    , mouthYCoordinate - radius/2
+                    , radius
+                    , radius
+                    , 180
+                    , extent
+                    , java.awt.geom.Arc2D.OPEN          
+                );
+
+      java.awt.geom.Arc2D.Double leftMustache = new java.awt.geom.Arc2D.Double (
+                     x - (radius/2)
+                    , mouthYCoordinate - radius/2
+                    , radius
+                    , radius
+                    , -180
+                    , -extent
+                    , java.awt.geom.Arc2D.OPEN          
+                );
+  
+
       wholeFace.append(mustacheLine, false);
     }
-
-    public FaceWithFancyMustache(int xCoordinate, int yCoordinate, int r, int eyeRadius, int arcHeight){
-      super(xCoordinate, yCoordinate, r, eyeRadius, arcHeight);
-      x = xCoordinate;
-      y = yCoordinate;
-      radius = r;
-
-      double mouthYCoordinate = (y + radius/3);
-      leftPoint = x-(radius/2) - x/20 ;
-      rightPoint = x+(radius/2) + x/20 ;
-
-      GeneralPath wholeFace = this.get();
-
-      Double mustacheLine = new Double (leftPoint, mouthYCoordinate - radius/15
-               , rightPoint, mouthYCoordinate - radius/15);
-      wholeFace.append(mustacheLine, false);
+    
+    public double getLeftPoint(){
+      return leftPoint;
+    }
+    public double getRightPoint(){
+      return rightPoint;
     }
 
 }

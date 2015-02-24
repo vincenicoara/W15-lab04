@@ -8,14 +8,13 @@ public class AnimatedPictureViewer {
 
     private DrawPanel panel = new DrawPanel();
     
-    private FaceWithFancyMustache face = new FaceWithFancyMustache(100, 100, 100, 17, 100);
+    private FaceWithFancyMustache face = new FaceWithFancyMustache(100, 100, 100);
     
     Thread anim;   
     
     private int x = 100;
     private int y = 100;
-    private int eyeR = 18;
-    private int arcH = 100;
+    private int angleExtent = 0;
     //private int xMustache = 100;
     //private int yMustache = 100; 
     //private double mouthYCoordinate = (100 + 100/3);
@@ -24,7 +23,6 @@ public class AnimatedPictureViewer {
 
     
     private int dx = 5;
-    private int dEyeR = 1; 
 
     public static void main (String[] args) {
       new AnimatedPictureViewer().go();
@@ -68,7 +66,7 @@ public class AnimatedPictureViewer {
 
           // Draw the Ipod
           g2.setColor(Color.RED);
-          Face test = new Face(x, y, 100, eyeR, arcH);
+          Face test = new Face(x, y, 100 );
           g2.draw(test);
        }
     }
@@ -79,39 +77,20 @@ public class AnimatedPictureViewer {
           //double leftPoint = x-(100/2) - x/20;
           //double rightPoint = x+(100/2) - x/20;
           //double distance = leftPoint - rightPoint;
-          int upperLimit = 20;
-          int lowerLimit = 5;
-          boolean signalA = true;
-          boolean signalB = true;
 
           while (true) {
             // Bounce off the walls
 
             if (x >= 400) { 
-              dx = -5;              
+              dx = -5; 
+              
             }
             if (x <= 50) {
-              dx = 5;
+             dx = 5; 
             }
-            if (signalA){
-              eyeR++;
-            } else {
-              eyeR--;
-            }
-            if (signalB){
-              arcH -= 1;
-            } else {
-              arcH += 1;
-            }
-            if (arcH == 80) signalB = false;
-            if (arcH == 100) signalB = true;
-            if (eyeR == upperLimit) signalA = false;
-            if (eyeR == lowerLimit) signalA = true;
-          
             
-            x += dx;  
-            eyeR = eyeR;  
-            arcH = arcH;            
+            
+            x += dx;                
             panel.repaint();
             Thread.sleep(50);
           }

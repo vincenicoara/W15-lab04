@@ -60,79 +60,7 @@ public class Face extends GeneralPathWrapper implements Shape
 										, 180
 										, java.awt.geom.Arc2D.OPEN					
 					      );
-	GeneralPath wholeFace = this.get();
-	wholeFace.append(head,false);
-	wholeFace.append(leftEye,false);
-	wholeFace.append(rightEye,false);
-	wholeFace.append(leftEyePupil,false);
-	wholeFace.append(rightEyePupil,false);
-	wholeFace.append(mouthLine, false);
-	wholeFace.append(mouthCurve, false);
-	}
 	
-	public Face(int xCoordinate, int yCoordinate, int r, int eyeRadius){
-
-    x = xCoordinate;
-    y = yCoordinate;
-    radius = r;
-
-	Circle head = new Circle(x, y, radius);
-	Circle leftEye = new Circle(x-(radius/2), y, radius/5);
-	Circle rightEye = new Circle(x+(radius/2), y, radius/5);
-	Circle leftEyePupil = new Circle(x-(radius/2), y, eyeRadius);
-	Circle rightEyePupil = new Circle(x+(radius/2), y, eyeRadius);
-	//Circle leftEyePupil = new Circle(x-(radius/2), y, radius/10);
-	//Circle rightEyePupil = new Circle(x+(radius/2), y, radius/10);
-	double mouthYCoordinate = (y + radius/3);
-	Double mouthLine = new Double (x-(radius/2), mouthYCoordinate
-				       , x+(radius/2), mouthYCoordinate);
-	java.awt.geom.Arc2D.Double mouthCurve = new java.awt.geom.Arc2D.Double (
-										 x - (radius/2)
-										, mouthYCoordinate - radius/2
-										, radius
-										, radius
-										, 180
-										, 180
-										, java.awt.geom.Arc2D.OPEN					
-					      );
-
-
-	GeneralPath wholeFace = this.get();
-	wholeFace.append(head,false);
-	wholeFace.append(leftEye,false);
-	wholeFace.append(rightEye,false);
-	wholeFace.append(leftEyePupil,false);
-	wholeFace.append(rightEyePupil,false);
-	wholeFace.append(mouthLine, false);
-	wholeFace.append(mouthCurve, false);
-    }
-
-    public Face(int xCoordinate, int yCoordinate, int r, int eyeRadius, int arcHeight){
-
-    x = xCoordinate;
-    y = yCoordinate;
-    radius = r;
-
-	Circle head = new Circle(x, y, radius);
-	Circle leftEye = new Circle(x-(radius/2), y, radius/5);
-	Circle rightEye = new Circle(x+(radius/2), y, radius/5);
-	Circle leftEyePupil = new Circle(x-(radius/2), y, eyeRadius);
-	Circle rightEyePupil = new Circle(x+(radius/2), y, eyeRadius);
-	//Circle leftEyePupil = new Circle(x-(radius/2), y, radius/10);
-	//Circle rightEyePupil = new Circle(x+(radius/2), y, radius/10);
-	double mouthYCoordinate = (y + radius/3);
-	Double mouthLine = new Double (x-(radius/2), mouthYCoordinate
-				       , x+(radius/2), mouthYCoordinate);
-	java.awt.geom.Arc2D.Double mouthCurve = new java.awt.geom.Arc2D.Double (
-										 x - (radius/2)
-										, mouthYCoordinate - radius/2
-										, radius
-										, arcHeight
-										, 180
-										, 180
-										, java.awt.geom.Arc2D.OPEN					
-					      );
-
 
 	GeneralPath wholeFace = this.get();
 	wholeFace.append(head,false);
@@ -145,4 +73,3 @@ public class Face extends GeneralPathWrapper implements Shape
     }
 
 }
-
