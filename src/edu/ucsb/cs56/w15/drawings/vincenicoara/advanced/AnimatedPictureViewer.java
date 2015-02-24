@@ -16,6 +16,8 @@ public class AnimatedPictureViewer {
     private int y = 100;
     private int eyeR = 18;
     private int arcH = 100;
+    private int lMustache = 45;
+    private int rMustache =  155; 
     //private int xMustache = 100;
     //private int yMustache = 100; 
     //private double mouthYCoordinate = (100 + 100/3);
@@ -68,7 +70,7 @@ public class AnimatedPictureViewer {
 
           // Draw the Ipod
           g2.setColor(Color.RED);
-          Face test = new Face(x, y, 100, eyeR, arcH);
+          FaceWithFancyMustache test = new FaceWithFancyMustache(x, y, 100, eyeR, arcH, lMustache, rMustache);
           g2.draw(test);
        }
     }
@@ -83,6 +85,8 @@ public class AnimatedPictureViewer {
           int lowerLimit = 5;
           boolean signalA = true;
           boolean signalB = true;
+          boolean signalLeft = true;
+          boolean signalRight = true;
 
           while (true) {
             // Bounce off the walls
@@ -103,10 +107,22 @@ public class AnimatedPictureViewer {
             } else {
               arcH += 1;
             }
+            if (signalLeft){
+              lMustache -= 5;
+            } else {
+              lMustache =+ 5;
+            }
+            if (signalRight){
+              rMustache += 5;
+            } else {
+              rMustache -= 5;
+            }
             if (arcH == 80) signalB = false;
             if (arcH == 100) signalB = true;
             if (eyeR == upperLimit) signalA = false;
             if (eyeR == lowerLimit) signalA = true;
+            if (lMustache == 4) signalLeft = false;
+            if (rMustache == 196) signalRight = false;
           
             
             x += dx;  

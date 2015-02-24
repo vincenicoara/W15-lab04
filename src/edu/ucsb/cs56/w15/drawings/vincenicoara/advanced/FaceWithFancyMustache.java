@@ -91,4 +91,20 @@ public class FaceWithFancyMustache extends Face implements Shape
       wholeFace.append(mustacheLine, false);
     }
 
+    public FaceWithFancyMustache(int x, int y, int r, int eyeRadius, int arcHeight
+        , int lMustache, int rMustache){
+      super(x, y, r, eyeRadius, arcHeight);
+      radius = r;
+
+      double mouthYCoordinate = (y + radius/3);
+      lMustache = x-(radius/2) - x/20 ;
+      rMustache = x+(radius/2) + x/20 ;
+
+      GeneralPath wholeFace = this.get();
+
+      Double mustacheLine = new Double (lMustache, mouthYCoordinate - radius/15
+               , rMustache, mouthYCoordinate - radius/15);
+      wholeFace.append(mustacheLine, false);
+    }
+
 }
